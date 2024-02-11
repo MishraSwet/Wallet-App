@@ -5,6 +5,7 @@ const zod = require("zod");
 const User = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
+const authMiddleware = require("../authMiddleware");
 
 const router = express.Router();
 
@@ -74,7 +75,9 @@ router.post("/signin", async (req, res) => {
 })
 
 //User can perform to operations on userDB(user related) edit info or search for other users
-router.put("/edit", async (req, res) => {
+//authMiddleware added to the middle as it must be a valid user to perform these tasks 
+
+router.put("/edit",authMiddleware, async (req, res) => {
     const body = req.body;
 
 
@@ -93,12 +96,33 @@ router.put("/edit", async (req, res) => {
         });
     }
     try {
+
+        //$set helps update only those fields that are requested to be edited and keep others as it is
+        //without set it will just act as another add operation and xizting values will be overwritten and the fields that are not provided to be edited will be reset to null..
+
         const user = await User.updateOne({ _id: body.userId }, { $set: body });
         res.json({message:"request successful"})
     }
     catch (err) {
         res.json({ message: err });
     }
+})
+
+//search for other users
+//here we have to search for a substring in various fields eg first/last name done through $or syntax -> $or:[f1,f2,f3] f1-->{field:{search property}}
+//a substring search is done by a regex search done through $regex:"substring"
+
+router.get("/search",authMiddleware, async (req, res) => {
+    //if !provided search for empty string
+    const key = req.query.key || "";
+    const users = await User.find({
+        $or:
+        [
+            { firstname: { $regex: key } },
+            { lastname: { $regex: key } },
+        ]
+    });
+
 })
 
 module.exports = router;
