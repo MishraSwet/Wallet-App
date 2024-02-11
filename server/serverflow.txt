@@ -1,0 +1,5 @@
+Create --> Index.js and import express and cors,jwt,body-parser and use them along with .json()
+
+Create --> db.js Connect it to Mongo import mongoose and create schemas using Mongoose.schema(obj) and models using Mongoose.model("modelname",schema) only export the model
+
+Create a Routes folder to handle routes based on models eg for user we can signup signin
