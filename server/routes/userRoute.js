@@ -1,3 +1,5 @@
+//userRouter ===> all the routes that access the user dB
+
 const express = require("express");
 const zod = require("zod");
 const User = require("../db");
@@ -69,6 +71,34 @@ router.post("/signin", async (req, res) => {
     res.json({
         message: "Error While Signing In"
     })
+})
+
+//User can perform to operations on userDB(user related) edit info or search for other users
+router.put("/edit", async (req, res) => {
+    const body = req.body;
+
+
+    //optional as anyone can be edited not necessarily all are required to be provided in req to be edited
+
+    const validation = zod.object({
+        username: zod.string().optional(),
+        password: zod.string().optional(),
+        firstname: zod.string().optional(),
+        lastname:zod.string().optional(),
+    })
+    const { success } = validation.safeParse(body);
+    if (!success) {
+        res.json({
+            message:"Invalid Request"
+        });
+    }
+    try {
+        const user = await User.updateOne({ _id: body.userId }, { $set: body });
+        res.json({message:"request successful"})
+    }
+    catch (err) {
+        res.json({ message: err });
+    }
 })
 
 module.exports = router;
