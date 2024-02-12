@@ -122,7 +122,7 @@ router.get("/search",authMiddleware, async (req, res) => {
             { lastname: { $regex: key } },
         ]
     });
-
+    
 })
 
 module.exports = router;
