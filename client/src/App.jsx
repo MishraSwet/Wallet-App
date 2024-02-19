@@ -1,10 +1,17 @@
 import React from 'react'
+import Navigation from './Components/Navigation'
+import Sidebar from './Components/Sidebar'
+import Content from './Components/Content'
 
 const App = () => {
   return (
-    <div>
-      Hello World!!
-    </div>
+    <>
+      <main>
+        <Navigation />
+        <Content/>
+        <Sidebar/>
+      </main>
+    </>
   )
 }
 
