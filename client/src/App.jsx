@@ -6,14 +6,11 @@ import Header from './Components/Header';
 
 const App = () => {
   return (
-    <>
-      <Header/>
-      <main style={{display: "flex" , justifyContent:"space-around"}}>
-        <Navigation style={{ flex: "1", minWidth: "25%" }} />
-        <Content style={{ flex: "2", minWidth: "50%" }} />
-        <Sidebar style={{ flex: "1", minWidth: "25%" }} />
-      </main>
-    </>
+    <div className="cols cols-span 3"
+    
+    >
+
+    </div>
   );
 };
 
