@@ -1,9 +1,13 @@
 import React from 'react'
 
-const Layout = () => {
+const Layout = ({children}) => {
   return (
-    <div>
-        children       
+    <div className="h-screen bg-black">
+      <div className="container h-full mx-auto xl:px-30">
+        <div className="grid grid-cols-3 h-full">
+        {children}       
+        </div>
+      </div>
     </div>
   )
 }
