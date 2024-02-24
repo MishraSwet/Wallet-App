@@ -1,5 +1,6 @@
 import Header from './Header'
 import React from 'react'
+import Navigation from './Navigation'
 
 const Layout = ({children}) => {
   return (
@@ -7,6 +8,7 @@ const Layout = ({children}) => {
       <div className="container h-full mx-auto xl:px-30">
         <Header/>
         <div className="grid grid-cols-3 h-full">
+          <Navigation/>
         {children}       
         </div>
       </div>
