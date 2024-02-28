@@ -1,5 +1,5 @@
 import Header from './Header'
-import React from 'react'
+import React,{children} from 'react'
 import Navigation from './Navigation'
 
 const Layout = ({children}) => {
