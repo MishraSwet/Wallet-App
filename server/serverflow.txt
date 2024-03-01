@@ -3,3 +3,9 @@ Create --> Index.js and import express and cors,jwt,body-parser and use them alo
 Create --> db.js Connect it to Mongo import mongoose and create schemas using Mongoose.schema(obj) and models using Mongoose.model("modelname",schema) only export the model
 
 Create a Routes folder to handle routes based on models eg for user we can signup signin
+
+Create Tables based on relationships between entities 
+
+For One-One relationships no need for extra Tables
+
+For Many-One Create 2 tables
