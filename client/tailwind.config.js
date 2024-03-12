@@ -1,11 +1,17 @@
-/** @type {import('tailwindcss').Config} */
-export default {
+// tailwind.config.js
+const colors = require('tailwindcss/colors');
+
+module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        customBlue: '#002233',
+      },
+    },
   },
   plugins: [],
 }
