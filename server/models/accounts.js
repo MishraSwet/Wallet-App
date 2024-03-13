@@ -16,4 +16,3 @@ const AccountsSchema = mongoose.Schema({
 })
 
 export const Accounts = mongoose.model("Accounts",AccountsSchema);
-export const User = mongoose.model("User", userSchema);
