@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 mongoose.connect("mongodb://localhost:27017/walletApp");
 
-const userSchema = mongoose.Schema({
+ const userSchema = mongoose.Schema({
     username: {
         type: String,
         required: true,
@@ -30,23 +30,5 @@ const userSchema = mongoose.Schema({
     }
 });
 
-const AccountsSchema = mongoose.Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: User,
-        required: true,
-    },
-    balance: {
-        type: number,
-        required:true,
-    }
-})
+export const User = mongoose.model("User", userSchema);
 
-const Accounts = mongoose.model("Accounts",AccountsSchema);
-
-const User = mongoose.model("User", userSchema);
-
-module.exports={
-    User,
-    Accounts
-}
